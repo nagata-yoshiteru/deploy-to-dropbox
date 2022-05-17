@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const Dropbox = require('dropbox').Dropbox;
+import { Dropbox } from 'dropbox'; // eslint-disable-line no-unused-vars
 const fs = require('fs');
 const fetch2 = require('node-fetch');
 const core = require('@actions/core');

@@ -1,4 +1,4 @@
-const Dropbox = require('dropbox').Dropbox
+import { Dropbox, Error, files } from 'dropbox'; // eslint-disable-line no-unused-vars
 const fs = require('fs')
 const fetch2 = require('node-fetch')
 const core = require('@actions/core')
