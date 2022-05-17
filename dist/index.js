@@ -25970,19 +25970,13 @@ function uploadFile(filePath) {
         const file = fs.readFileSync(filePath);
         const destinationPath = `${dropboxPathPrefix}${filePath}`;
         core.debug(`[Dropbox] Uploaded file at: ${destinationPath}`);
-        try {
-            const response = yield dropbox.filesUpload({
-                path: destinationPath,
-                contents: file,
-                mode: fileWriteMode,
-            });
-            core.debug('[Dropbox] File upload response: ' + JSON.stringify(response));
-            return response;
-        }
-        catch (error) {
-            core.error('[Dropbox] File upload error: ' + JSON.stringify(error));
-            return error;
-        }
+        const response = yield dropbox.filesUpload({
+            path: destinationPath,
+            contents: file,
+            mode: fileWriteMode,
+        });
+        core.debug('[Dropbox] File upload response: ' + JSON.stringify(response));
+        return response;
     });
 }
 glob(globSource, {}, (err, files) => {
@@ -25994,9 +25988,8 @@ glob(globSource, {}, (err, files) => {
         console.log('[Dropbox] Upload completed');
     })
         .catch((err) => {
-        core.setFailed(`Error: Dropbox upload failed: ${err.message}`);
-        core.error('[Dropbox] Upload failed: ' + JSON.stringify(err));
-        core.setFailed(`Error: Dropbox upload failed: ${err.message}`);
+        core.error('[Dropbox] Upload failed: ' + err);
+        core.setFailed(`Error: Dropbox upload failed: ${err}`);
     });
 });
 

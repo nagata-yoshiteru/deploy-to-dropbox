@@ -16,19 +16,14 @@ async function uploadFile(filePath: string): Promise<any> {
   const destinationPath = `${dropboxPathPrefix}${filePath}`
   core.debug(`[Dropbox] Uploaded file at: ${destinationPath}`)
 
-  try {
-    const response = await dropbox.filesUpload({
-      path: destinationPath,
-      contents: file,
-      mode: fileWriteMode,
-    })
+  const response = await dropbox.filesUpload({
+    path: destinationPath,
+    contents: file,
+    mode: fileWriteMode,
+  })
 
-    core.debug('[Dropbox] File upload response: ' + JSON.stringify(response))
-    return response
-  } catch (error) {
-    core.error('[Dropbox] File upload error: ' + JSON.stringify(error))
-    return error
-  }
+  core.debug('[Dropbox] File upload response: ' + JSON.stringify(response))
+  return response
 }
 
 glob(globSource, {}, (err: any, files: string[]) => {
@@ -38,9 +33,8 @@ glob(globSource, {}, (err: any, files: string[]) => {
       core.debug('[Dropbox] All files uploaded: ' + JSON.stringify(all))
       console.log('[Dropbox] Upload completed')
     })
-    .catch((err) => {
-      core.setFailed(`Error: Dropbox upload failed: ${err.message}`)
-      core.error('[Dropbox] Upload failed: ' + JSON.stringify(err))
-      core.setFailed(`Error: Dropbox upload failed: ${err.message}`);
+    .catch((err: Error<files.UploadError>) => {
+      core.error('[Dropbox] Upload failed: ' + err)
+      core.setFailed(`Error: Dropbox upload failed: ${err}`);
     })
 })
