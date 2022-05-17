@@ -1,11 +1,11 @@
-name: 'Deploy to Dropbox'
+name: 'Deploy to Dropbox 2'
 description: 'This action will handle the deployment process of your project to Dropbox.'
-author: 'aTable'
+author: 'nagata-yoshiteru'
 branding:
   icon: 'upload-cloud'
   color: 'black'
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'dist/index.js'
 inputs:
   DROPBOX_ACCESS_TOKEN:
