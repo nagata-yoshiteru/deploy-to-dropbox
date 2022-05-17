@@ -25964,7 +25964,7 @@ const accessToken = core.getInput('DROPBOX_ACCESS_TOKEN');
 const globSource = core.getInput('GLOB');
 const dropboxPathPrefix = core.getInput('DROPBOX_DESTINATION_PATH_PREFIX');
 const fileWriteMode = core.getInput('FILE_WRITE_MODE');
-const dropbox = new dropbox__WEBPACK_IMPORTED_MODULE_0__/* .Dropbox */ .d8({ accessToken, fetch: fetch2 });
+const dropbox = new dropbox__WEBPACK_IMPORTED_MODULE_0__/* .Dropbox */ .d8({ accessToken });
 function uploadFile(filePath) {
     return __awaiter(this, void 0, void 0, function* () {
         const file = fs.readFileSync(filePath);

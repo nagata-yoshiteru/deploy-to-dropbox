@@ -9,7 +9,7 @@ const accessToken = core.getInput('DROPBOX_ACCESS_TOKEN')
 const globSource = core.getInput('GLOB')
 const dropboxPathPrefix = core.getInput('DROPBOX_DESTINATION_PATH_PREFIX')
 const fileWriteMode = core.getInput('FILE_WRITE_MODE')
-const dropbox = new Dropbox({ accessToken, fetch: fetch2 })
+const dropbox = new Dropbox({ accessToken })
 
 async function uploadFile(filePath: string): Promise<any> {
   const file = fs.readFileSync(filePath)
