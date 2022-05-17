@@ -25973,7 +25973,7 @@ function uploadFile(filePath) {
         const response = yield dropbox.filesUpload({
             path: destinationPath,
             contents: file,
-            mode: fileWriteMode,
+            mode: { '.tag': fileWriteMode },
         });
         core.debug('[Dropbox] File upload response: ' + JSON.stringify(response));
         return response;
