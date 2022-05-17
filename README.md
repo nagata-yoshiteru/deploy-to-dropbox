@@ -1,6 +1,6 @@
 # deploy-to-dropbox
 
-A GitHub Action to deploy to Dropbox
+A GitHub Action to deploy to Dropbox using dropbox-sdk-js@10.x
 
 ## Setup
 
