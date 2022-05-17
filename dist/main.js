@@ -49,5 +49,6 @@ glob(globSource, {}, (err, files) => {
         .catch((err) => {
         core.setFailed(`Error: Dropbox upload failed: ${err.message}`);
         core.error('[Dropbox] Upload failed: ' + JSON.stringify(err));
+        core.setFailed(`Error: Dropbox upload failed: ${err.message}`);
     });
 });
