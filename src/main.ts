@@ -19,7 +19,7 @@ async function uploadFile(filePath: string): Promise<any> {
   const response = await dropbox.filesUpload({
     path: destinationPath,
     contents: file,
-    mode: fileWriteMode,
+    mode: {'.tag': fileWriteMode},
   })
 
   core.debug('[Dropbox] File upload response: ' + JSON.stringify(response))
