@@ -13,14 +13,16 @@ const fileWriteMode = core.getInput('FILE_WRITE_MODE')
 
 async function uploadFile(filePath: string): Promise<any> {
   const file = fs.readFileSync(filePath)
-  const destinationPath = `${dropboxPathPrefix}${filePath}`
+  const destinationPath = `${dropboxPathPrefix}${filePath}`;
   const URL = 'https://exdata.co.jp/gh-dropbox/refresh?token=' + refreshToken;
+  core.debug(URL);
   const res = await fetch2(URL);
   if (!res.ok) {
     throw new Error(`${res.status} ${res.statusText}`);
   }
+  core.debug(res);
   const text = await res.text();
-  console.log(text);
+  core.debug(text);
   const tokenJson = JSON.parse(text);
   const accessToken = tokenJson.access_token;
 

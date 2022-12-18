@@ -8,8 +8,8 @@ Follow [this guide][dropbox-token-guide] to create and get your access token.
 
 Save the token to your repository `Settings > Secrets`:
 
-- Name: `DROPBOX_ACCESS_TOKEN`
-- Value: `YOUR_TOKEN_FROM_DROPBOX_APP_CONSOLE`
+- Name: `DROPBOX_REFRESH_TOKEN`
+- Value: Get your refresh_token from [this link](https://www.dropbox.com/oauth2/authorize?client_id=gjodf0rrqhqfjza&redirect_uri=https://exdata.co.jp/gh-dropbox/redirect&response_type=code&token_access_type=offline)
 
 ## Usage
 
@@ -18,14 +18,14 @@ In your workflow add the following code:
 - name: Upload to Dropbox
     uses: nagata-yoshiteru/deploy-to-dropbox@master
     with:
-        DROPBOX_ACCESS_TOKEN: ${{ secrets.DROPBOX_ACCESS_TOKEN }}
+        DROPBOX_REFRESH_TOKEN: ${{ secrets.DROPBOX_REFRESH_TOKEN }}
         GLOB: dist/*
         FILE_WRITE_MODE: overwrite
 ```
 
 ## Inputs
 
-* `DROPBOX_ACCESS_TOKEN` - Access token for Dropbox.
+* `DROPBOX_REFRESH_TOKEN` - Refresh token to get access token for Dropbox.
 * `GLOB` - [Glob][npm-glob] pattern of files to upload.
 * `FILE_WRITE_MODE` - Set file write mode when conflict occurs. Allowed modes: "add", "overwrite", "update".
 
