@@ -8,8 +8,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { Dropbox } from 'dropbox'; // eslint-disable-line
+import fetch from 'node-fetch';
 const fs = require('fs');
-const fetch = require('node-fetch');
 const core = require('@actions/core');
 const github = require('@actions/github');
 const glob = require('glob');

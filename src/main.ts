@@ -1,6 +1,6 @@
 import { Dropbox, Error, files } from 'dropbox'; // eslint-disable-line
+import fetch from 'node-fetch';
 const fs = require('fs')
-const fetch = require('node-fetch');
 const core = require('@actions/core')
 const github = require('@actions/github')
 const glob = require('glob')
