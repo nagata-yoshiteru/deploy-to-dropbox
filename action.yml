@@ -8,7 +8,7 @@ runs:
   using: 'node16'
   main: 'dist/index.js'
 inputs:
-  DROPBOX_ACCESS_TOKEN:
+  DROPBOX_REFRESH_TOKEN:
     description: 'Value should be a secret that is set in your repository settings'
     required: true
 
