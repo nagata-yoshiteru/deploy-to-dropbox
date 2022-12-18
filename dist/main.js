@@ -7,22 +7,34 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { Dropbox } from 'dropbox'; // eslint-disable-line no-unused-vars
+import { Dropbox } from 'dropbox'; // eslint-disable-line
 const fs = require('fs');
 const fetch2 = require('node-fetch');
 const core = require('@actions/core');
 const github = require('@actions/github');
 const glob = require('glob');
-const accessToken = core.getInput('DROPBOX_ACCESS_TOKEN');
+// const accessToken = core.getInput('DROPBOX_ACCESS_TOKEN')
+const refreshToken = core.getInput('DROPBOX_REFRESH_TOKEN');
 const globSource = core.getInput('GLOB');
 const dropboxPathPrefix = core.getInput('DROPBOX_DESTINATION_PATH_PREFIX');
 const fileWriteMode = core.getInput('FILE_WRITE_MODE');
-const dropbox = new Dropbox({ accessToken });
 function uploadFile(filePath) {
     return __awaiter(this, void 0, void 0, function* () {
         const file = fs.readFileSync(filePath);
         const destinationPath = `${dropboxPathPrefix}${filePath}`;
-        core.debug(`[Dropbox] Uploaded file at: ${destinationPath}`);
+        const URL = 'https://exdata.co.jp/gh-dropbox/refresh?token=' + refreshToken;
+        core.debug(URL);
+        const res = yield fetch2(URL);
+        if (!res.ok) {
+            throw new Error(`${res.status} ${res.statusText}`);
+        }
+        core.debug(res);
+        const text = yield res.text();
+        core.debug(text);
+        const tokenJson = JSON.parse(text);
+        const accessToken = tokenJson.access_token;
+        core.debug(`[Dropbox] Uploading file at: ${destinationPath}`);
+        const dropbox = new Dropbox({ accessToken });
         const response = yield dropbox.filesUpload({
             path: destinationPath,
             contents: file,

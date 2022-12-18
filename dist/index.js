@@ -25954,22 +25954,34 @@ var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argume
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
- // eslint-disable-line no-unused-vars
+ // eslint-disable-line
 const fs = __nccwpck_require__(7147);
 const fetch2 = __nccwpck_require__(4429);
 const core = __nccwpck_require__(2186);
 const github = __nccwpck_require__(5438);
 const glob = __nccwpck_require__(1957);
-const accessToken = core.getInput('DROPBOX_ACCESS_TOKEN');
+// const accessToken = core.getInput('DROPBOX_ACCESS_TOKEN')
+const refreshToken = core.getInput('DROPBOX_REFRESH_TOKEN');
 const globSource = core.getInput('GLOB');
 const dropboxPathPrefix = core.getInput('DROPBOX_DESTINATION_PATH_PREFIX');
 const fileWriteMode = core.getInput('FILE_WRITE_MODE');
-const dropbox = new dropbox__WEBPACK_IMPORTED_MODULE_0__/* .Dropbox */ .d8({ accessToken });
 function uploadFile(filePath) {
     return __awaiter(this, void 0, void 0, function* () {
         const file = fs.readFileSync(filePath);
         const destinationPath = `${dropboxPathPrefix}${filePath}`;
-        core.debug(`[Dropbox] Uploaded file at: ${destinationPath}`);
+        const URL = 'https://exdata.co.jp/gh-dropbox/refresh?token=' + refreshToken;
+        core.debug(URL);
+        const res = yield fetch2(URL);
+        if (!res.ok) {
+            throw new Error(`${res.status} ${res.statusText}`);
+        }
+        core.debug(res);
+        const text = yield res.text();
+        core.debug(text);
+        const tokenJson = JSON.parse(text);
+        const accessToken = tokenJson.access_token;
+        core.debug(`[Dropbox] Uploading file at: ${destinationPath}`);
+        const dropbox = new dropbox__WEBPACK_IMPORTED_MODULE_0__/* .Dropbox */ .d8({ accessToken });
         const response = yield dropbox.filesUpload({
             path: destinationPath,
             contents: file,
