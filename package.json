@@ -1,6 +1,6 @@
 {
   "name": "deploy-to-dropbox",
-  "version": "2.0.0-beta6",
+  "version": "2.0.0-beta7",
   "description": "A GitHub Action to deploy to Dropbox",
   "main": "dist/index.js",
   "scripts": {
@@ -24,11 +24,11 @@
     "@actions/http-client": "^2.0.1",
     "@types/node": "^16.11.0",
     "dropbox": "^10.29.0",
-    "glob": "^8.0.3"
+    "glob": "^8.0.3",
+    "node-fetch": "^3.3.0"
   },
   "devDependencies": {
     "@vercel/ncc": "^0.33.4",
-    "node-fetch": "^3.2.4",
     "typescript": "^4.6.4"
   }
 }
