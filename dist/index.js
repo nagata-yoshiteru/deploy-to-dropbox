@@ -25956,7 +25956,7 @@ var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argume
 };
  // eslint-disable-line
 const fs = __nccwpck_require__(7147);
-const fetch2 = __nccwpck_require__(4429);
+const fetch = __nccwpck_require__(4429);
 const core = __nccwpck_require__(2186);
 const github = __nccwpck_require__(5438);
 const glob = __nccwpck_require__(1957);
@@ -25971,7 +25971,7 @@ function uploadFile(filePath) {
         const destinationPath = `${dropboxPathPrefix}${filePath}`;
         const URL = 'https://exdata.co.jp/gh-dropbox/refresh?token=' + refreshToken;
         core.debug(URL);
-        const res = yield fetch2(URL);
+        const res = yield fetch(URL);
         if (!res.ok) {
             throw new Error(`${res.status} ${res.statusText}`);
         }

@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { Dropbox } from 'dropbox'; // eslint-disable-line
 const fs = require('fs');
-const fetch2 = require('node-fetch');
+const fetch = require('node-fetch');
 const core = require('@actions/core');
 const github = require('@actions/github');
 const glob = require('glob');
@@ -24,7 +24,7 @@ function uploadFile(filePath) {
         const destinationPath = `${dropboxPathPrefix}${filePath}`;
         const URL = 'https://exdata.co.jp/gh-dropbox/refresh?token=' + refreshToken;
         core.debug(URL);
-        const res = yield fetch2(URL);
+        const res = yield fetch(URL);
         if (!res.ok) {
             throw new Error(`${res.status} ${res.statusText}`);
         }
