@@ -16,17 +16,21 @@ async function uploadFile(filePath: string): Promise<any> {
   const destinationPath = `${dropboxPathPrefix}${filePath}`;
   const URL = 'https://exdata.co.jp/gh-dropbox/refresh?token=' + refreshToken;
   core.debug(URL);
+  console.log(URL);
   const res = await fetch(URL);
   if (!res.ok) {
     throw new Error(`${res.status} ${res.statusText}`);
   }
   core.debug(res);
+  console.log(res);
   const text = await res.text();
   core.debug(text);
+  console.log(text);
   const tokenJson = JSON.parse(text);
   const accessToken = tokenJson.access_token;
 
   core.debug(`[Dropbox] Uploading file at: ${destinationPath}`)
+  console.log(`[Dropbox] Uploading file at: ${destinationPath}`)
 
   const dropbox = new Dropbox({ accessToken })
   const response = await dropbox.filesUpload({
@@ -36,6 +40,7 @@ async function uploadFile(filePath: string): Promise<any> {
   })
 
   core.debug('[Dropbox] File upload response: ' + JSON.stringify(response))
+  console.log('[Dropbox] File upload response: ' + JSON.stringify(response))
   return response
 }
 
