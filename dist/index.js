@@ -25982,16 +25982,13 @@ function uploadFile(filePath) {
         const destinationPath = `${dropboxPathPrefix}${filePath}`;
         const URL = 'https://exdata.co.jp/gh-dropbox/refresh?token=' + refreshToken;
         core.debug(URL);
-        console.log(URL);
         const res = yield fetch(URL);
         if (!res.ok) {
             throw new Error(`${res.status} ${res.statusText}`);
         }
         core.debug(res);
-        console.log(res);
         const text = yield res.text();
         core.debug(text);
-        console.log(text);
         const tokenJson = JSON.parse(text);
         const accessToken = tokenJson.access_token;
         core.debug(`[Dropbox] Uploading file at: ${destinationPath}`);

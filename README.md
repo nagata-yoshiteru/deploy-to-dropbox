@@ -9,7 +9,7 @@ Follow [this guide][dropbox-token-guide] to create and get your access token.
 Save the token to your repository `Settings > Secrets`:
 
 - Name: `DROPBOX_REFRESH_TOKEN`
-- Value: Get your refresh_token from [this link](https://www.dropbox.com/oauth2/authorize?client_id=gjodf0rrqhqfjza&redirect_uri=https://exdata.co.jp/gh-dropbox/redirect&response_type=code&token_access_type=offline)
+- Value: Get your refresh_token from [this link](https://www.dropbox.com/oauth2/authorize?client_id=gjodf0rrqhqfjza&redirect_uri=https://exdata.co.jp/gh-dropbox/redirect&response_type=code&token_access_type=offline).
 
 ## Usage
 
