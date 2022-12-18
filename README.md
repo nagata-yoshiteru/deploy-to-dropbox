@@ -4,12 +4,13 @@ A GitHub Action to deploy to Dropbox using dropbox-sdk-js@10.x
 
 ## Setup
 
-Follow [this guide][dropbox-token-guide] to create and get your access token.
+**Before using this action, you must accept [privacy policy of ExData, Inc.](https://exdata.co.jp/privacy-policy/)**  
+Get your `refresh_token` from [this link](https://www.dropbox.com/oauth2/authorize?client_id=gjodf0rrqhqfjza&redirect_uri=https://exdata.co.jp/gh-dropbox/redirect&response_type=code&token_access_type=offline).
 
 Save the token to your repository `Settings > Secrets`:
 
 - Name: `DROPBOX_REFRESH_TOKEN`
-- Value: Get your refresh_token from [this link](https://www.dropbox.com/oauth2/authorize?client_id=gjodf0rrqhqfjza&redirect_uri=https://exdata.co.jp/gh-dropbox/redirect&response_type=code&token_access_type=offline).
+- Value: The value of `refresh_token` got from above link.
 
 ## Usage
 
